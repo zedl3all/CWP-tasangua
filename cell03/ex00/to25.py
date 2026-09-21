@@ -6,7 +6,8 @@ def main():
         print("Error")
         return
 
-    for i in range(number, 25+1):
-        print("Inside the loop, my variable is", i)
+    while number < 25+1:
+        print("Inside the loop, my variable is", number)
+        number += 1
 
 main()
