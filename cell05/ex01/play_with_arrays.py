@@ -3,4 +3,5 @@ new_array = list()
 for i in array:
     new_array.append(i+2)
 
-print(new_array)
+print("Original array:", array)
+print("New array:", new_array)
