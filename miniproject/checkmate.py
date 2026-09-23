@@ -45,7 +45,7 @@ def Find_Position(board: list) -> dict:
             if j != ".":
                 #? หากหมากมีอยู่แล้วใน dict ก็จะ append list เข้าไปเพิ่ม
                 #? หากไม่เคยมีก็สร้างแล้วใส่ค่า
-                Output.setdefault(j, []).append([index, i])
+                Output.setdefault(j, []).append([i, index])
 
     return Output
 
@@ -58,15 +58,15 @@ def CreateObjectFromPosition(Position: dict) -> list:
         for pos in value:
             match key:
                 case 'R':
-                    Output.append(Rook(pos[1],pos[0]))
+                    Output.append(Rook(pos[0],pos[1]))
                 case 'P':
-                    Output.append(Pawn(pos[1],pos[0]))
+                    Output.append(Pawn(pos[0],pos[1]))
                 case 'Q':
-                    Output.append(Queen(pos[1],pos[0]))
+                    Output.append(Queen(pos[0],pos[1]))
                 case 'B':
-                    Output.append(Bishop(pos[1],pos[0]))
+                    Output.append(Bishop(pos[0],pos[1]))
                 case 'K':
-                    Output.append(King(pos[1],pos[0]))
+                    Output.append(King(pos[0],pos[1]))
 
     return Output
 
@@ -97,11 +97,12 @@ def checkmate(StrBoard: str):
         Obj_Pos.remove(king)
     else:
         print("Error")
+        return
 
     Output = False
 
     for piece in Obj_Pos:
-        if(piece.move_check(board_size, king)):
+        if(piece.move_check(board_size, king, Position)):
             Output=True
 
     if Output:

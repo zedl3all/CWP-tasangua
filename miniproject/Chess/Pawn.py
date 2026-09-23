@@ -2,7 +2,7 @@ from .Abs_Piece import Piece
 
 class Pawn(Piece):
 
-    def move_check(self, board_size:list, King: object) -> bool:
+    def move_check(self, board_size:list, King: object, otherPiece: dict) -> bool:
         """ตรวจสอบว่าเดินแล้วโดน King ไหม"""
         next_row = self.x - 1
         left_column = self.y - 1
