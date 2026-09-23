@@ -1,5 +1,5 @@
 import re
-from Chess.Rook import Rook
+from Chess import Bishop, King, Pawn, Queen, Rook
 
 def Convert2List(board: str) -> list:
     """Convert Str board to List"""
@@ -48,6 +48,27 @@ def Find_Position(board: list) -> dict:
 
     return Output
 
+def CreateObjectFromPosition(Position: dict) -> list:
+    """Create Object Piece From Positon"""
+
+    Output = list()
+
+    for key, value in Position.items():
+        for pos in value:
+            match key:
+                case 'R':
+                    Output.append(Rook(pos[0],pos[1]))
+                case 'P':
+                    Output.append(Pawn(pos[0],pos[1]))
+                case 'Q':
+                    Output.append(Queen(pos[0],pos[1]))
+                case 'B':
+                    Output.append(Bishop(pos[0],pos[1]))
+                case 'K':
+                    Output.append(King(pos[0],pos[1]))
+
+    return Output
+
 def checkmate(StrBoard: str):
 
     ListBoard = Convert2List(StrBoard)
@@ -65,7 +86,7 @@ def checkmate(StrBoard: str):
     pass
 
 board = """\
-R...
+R.R.
 .K..
 ..P.
 ....\
@@ -73,4 +94,4 @@ R...
 
 new_board = Convert2List(board)
 
-Find_Position(new_board)
+print(CreateObjectFromPosition(Find_Position(new_board)))
