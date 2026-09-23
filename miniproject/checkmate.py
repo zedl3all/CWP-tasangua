@@ -58,15 +58,15 @@ def CreateObjectFromPosition(Position: dict) -> list:
         for pos in value:
             match key:
                 case 'R':
-                    Output.append(Rook(pos[0],pos[1]))
+                    Output.append(Rook(pos[1],pos[0]))
                 case 'P':
-                    Output.append(Pawn(pos[0],pos[1]))
+                    Output.append(Pawn(pos[1],pos[0]))
                 case 'Q':
-                    Output.append(Queen(pos[0],pos[1]))
+                    Output.append(Queen(pos[1],pos[0]))
                 case 'B':
-                    Output.append(Bishop(pos[0],pos[1]))
+                    Output.append(Bishop(pos[1],pos[0]))
                 case 'K':
-                    Output.append(King(pos[0],pos[1]))
+                    Output.append(King(pos[1],pos[0]))
 
     return Output
 

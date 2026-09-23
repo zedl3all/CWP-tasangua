@@ -8,7 +8,7 @@ def main():
 .Q...
 .....\
 """
-    checkmate(board)
+    checkmate(board.upper())
 
 if __name__ == "__main__":
     main()
