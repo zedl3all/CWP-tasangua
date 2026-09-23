@@ -107,4 +107,4 @@ def checkmate(StrBoard: str):
     if Output:
         print("Success")
     else:
-        print("Error")
+        print("Fail")
