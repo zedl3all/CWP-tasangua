@@ -12,6 +12,7 @@ def Convert2List(board: str) -> list:
         else:
             output.append(temp)
             temp = list()
+    output.append(temp)
 
     return output
 
@@ -71,7 +72,8 @@ def CreateObjectFromPosition(Position: dict) -> list:
 
 def checkmate(StrBoard: str):
 
-    ListBoard = Convert2List(StrBoard)
+    ListBoard = Convert2List(StrBoard) #?[['Q', '.', '.', '.'], ['.', '.', '.', '.'], ['.', '.', '.', '.'], ['.', '.', '.', 'K']]
+    board_size = [len(ListBoard),len(ListBoard[0])] #?[4, 4]
 
     if not(CheckBoardSize(ListBoard)):
         print("Error")
@@ -81,17 +83,28 @@ def checkmate(StrBoard: str):
         print("Error")
         return
 
-    Position = Find_Position(ListBoard)
+    Position = Find_Position(ListBoard) #?{'Q': [[0, 0]], 'K': [[3, 3]]}
+    Obj_Pos = CreateObjectFromPosition(Position) #?[Obj.Queen, Obj.King]
 
-    pass
+    king = None
 
-board = """\
-R.R.
-.K..
-..P.
-....\
-"""
+    for i in Obj_Pos:
+        if(isinstance(i,King)):
+            king = i
+            break
 
-new_board = Convert2List(board)
+    if king:
+        Obj_Pos.remove(king)
+    else:
+        print("Error")
 
-print(CreateObjectFromPosition(Find_Position(new_board)))
+    Output = False
+
+    for piece in Obj_Pos:
+        if(piece.move_check(board_size, king)):
+            Output=True
+
+    if Output:
+        print("Success")
+    else:
+        print("Error")
